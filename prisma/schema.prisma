@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Rol {
+  USUARIO
+  ADMIN
+  SUPERADMIN
+}
+
+enum EstadoReserva {
+  PENDIENTE
+  CONFIRMADA
+  CANCELADA
+  COMPLETADA
+}
+
+enum TipoCancha {
+  FUTBOL
+  TENIS
+  BASQUET
+  VOLLEYBALL
+}
+
+model Usuario {
+  id         String    @id @default(cuid())
+  nombre     String
+  email      String    @unique
+  password   String
+  rol        Rol       @default(USUARIO)
+  activo     Boolean   @default(true)
+  creadoEn   DateTime  @default(now())
+  reservas   Reserva[]
+}
+
+model Cancha {
+  id          String     @id @default(cuid())
+  nombre      String
+  tipo        TipoCancha
+  descripcion String?
+  precioPorHora Float
+  capacidad   Int
+  activa      Boolean    @default(true)
+  imagen      String?
+  creadoEn    DateTime   @default(now())
+  reservas    Reserva[]
+}
+
+model Reserva {
+  id          String        @id @default(cuid())
+  usuarioId   String
+  canchaId    String
+  fecha       DateTime
+  horaInicio  String        // "08:00"
+  horaFin     String        // "09:00"
+  estado      EstadoReserva @default(PENDIENTE)
+  total       Float
+  notas       String?
+  creadoEn    DateTime      @default(now())
+
+  usuario     Usuario       @relation(fields: [usuarioId], references: [id])
+  cancha      Cancha        @relation(fields: [canchaId], references: [id])
+}
