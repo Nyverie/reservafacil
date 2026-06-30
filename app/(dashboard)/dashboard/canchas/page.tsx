@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/db'
 import { CanchaCard } from '@/components/features/CanchaCard'
-
+export const dynamic = 'force-dynamic'
 export default async function CanchasPage() {
   const canchas = await prisma.cancha.findMany({
     where: { activa: true },

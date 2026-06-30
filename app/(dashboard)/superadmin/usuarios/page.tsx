@@ -2,7 +2,7 @@ import { prisma } from '@/lib/db'
 import { Badge } from '@/components/ui/Badge'
 import { ToggleUsuarioBtn } from '@/components/features/ToggleUsuarioBtn'
 import { CambiarRolBtn } from '@/components/features/CambiarRolBtn'
-
+export const dynamic = 'force-dynamic'
 const rolBadge: Record<string, 'green' | 'blue' | 'red'> = {
   USUARIO: 'green', ADMIN: 'blue', SUPERADMIN: 'red',
 }

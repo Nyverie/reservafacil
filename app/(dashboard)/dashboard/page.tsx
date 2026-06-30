@@ -3,7 +3,7 @@ import { prisma } from '@/lib/db'
 import { StatCard } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import Link from 'next/link'
-
+export const dynamic = 'force-dynamic'
 const estadoBadge: Record<string, 'green' | 'yellow' | 'red' | 'blue' | 'gray'> = {
   CONFIRMADA: 'green',
   PENDIENTE: 'yellow',

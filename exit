@@ -1,0 +1,22 @@
+warning: in the working copy of 'prisma.config.ts', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/prisma.config.ts b/prisma.config.ts[m
+[1mindex 00ce1be..f4310f8 100644[m
+[1m--- a/prisma.config.ts[m
+[1m+++ b/prisma.config.ts[m
+[36m@@ -1,8 +1,14 @@[m
+ import { defineConfig } from 'prisma/config'[m
+ [m
+[32m+[m[32mconst databaseUrl = process.env.DATABASE_URL[m
+[32m+[m
+[32m+[m[32mif (!databaseUrl) {[m
+[32m+[m[32m  throw new Error('DATABASE_URL no está definida')[m
+[32m+[m[32m}[m
+[32m+[m
+ export default defineConfig({[m
+   schema: 'prisma/schema.prisma',[m
+   datasource: {[m
+[31m-    url: process.env.DATABASE_URL as string,[m
+[32m+[m[32m    url: databaseUrl,[m
+   },[m
+ })[m
+\ No newline at end of file[m

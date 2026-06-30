@@ -2,7 +2,7 @@ import { getSession } from '@/lib/session'
 import { prisma } from '@/lib/db'
 import { Badge } from '@/components/ui/Badge'
 import { CancelarReservaBtn } from '@/components/features/CancelarReservaBtn'
-
+export const dynamic = 'force-dynamic'
 const estadoBadge: Record<string, 'green' | 'yellow' | 'red' | 'blue' | 'gray'> = {
   CONFIRMADA: 'green', PENDIENTE: 'yellow', CANCELADA: 'red', COMPLETADA: 'blue',
 }

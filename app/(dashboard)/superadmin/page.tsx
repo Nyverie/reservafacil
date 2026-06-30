@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/db'
 import { StatCard } from '@/components/ui/Card'
 import Link from 'next/link'
-
+export const dynamic = 'force-dynamic'
 export default async function SuperAdminPage() {
   const [usuarios, admins, reservas, canchas] = await Promise.all([
     prisma.usuario.count({ where: { rol: 'USUARIO' } }),
